@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('madera_laminas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('adress');
-            $table->string('phone',10);
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('descripcion');  
+            $table->enum('tipo',['triplex','bloque','repiza','tabla','carton']);
+            $table->boolean('largo');
+            $table->boolean('ancho');
+            $table->boolean('espesor');
+            $table->boolean('valor_unitario');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('madera_laminas');
     }
 };

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Solicitud;    
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -19,9 +21,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'adress',
+        'phone',
         'email',
         'password',
     ];
+
+    //relacion muchos a muchos polimorfica
+    public function solicitudes()
+    {
+        return $this->morphToMany(Solicitud::class,'solicitables');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +51,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
 }
