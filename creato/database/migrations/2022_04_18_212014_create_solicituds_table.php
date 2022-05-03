@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('solicituds', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('cliente_id');
+            
             $table->enum('tipo_de_huacal',['triplex','madera','carton','jaula']);
             $table->double('l_huacal'); 
             $table->double('a_huacal');
@@ -22,6 +24,8 @@ return new class extends Migration
             $table->double('peso');
             $table->integer('cantidad');
             $table->double('separacion')->nullable();  
+            
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
         });
     }

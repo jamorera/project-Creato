@@ -12,6 +12,7 @@ class Solicitud extends Model
 {
     use HasFactory,HasApiTokens;
     protected $fillable = [
+        'cliente_id',
         'tipo_de_huacal',
         'l_huacal',
         'a_huacal',
@@ -20,6 +21,21 @@ class Solicitud extends Model
         'cantidad',
         'separacion'
     ];
+
+    //relaciones
+
+    //relacion uno a uno
+    public function ficha_tecnica()
+    {
+        return $this->hasOne(Ficha_tecnica::class);
+    }
+
+    //relacion de uno a muchos inversa
+    public function cliente()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     //relacion muchos a muchos polimorfica inversa
 

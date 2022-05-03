@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('ficha_tecnicas', function (Blueprint $table) {
             $table->id();   
-            $table->unsignedBigInteger('requerimiento_id')->unique();    
+            $table->unsignedBigInteger('solicitud_id')->unique();    
             
             $table->enum('tipo_de_base',['Bloque','Taco','Repisa']);    
             $table->double('l_externo');
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->integer('cant_uliston_tapa'); //cantidad unidad
             $table->integer('cant_tliston_tapa'); //cantidad total
 
-            $table->foreign('requerimiento_id')->references('id')->on('requerimientos')->onDelete('cascade');
+            $table->foreign('solicitud_id')->references('id')->on('solicituds')->onDelete('cascade');
             $table->timestamps();
         });
     }

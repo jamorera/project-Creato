@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Requerimiento;
+use App\Models\Solicitud;
 
 class Ficha_tecnica extends Model
 {
     use HasFactory,HasApiTokens;
     protected $fillaable = [
-        'requerimiento_id',
+        'solicitud_id',
 
         'tipo_de_base',
         'l_externo',
@@ -42,8 +42,8 @@ class Ficha_tecnica extends Model
     
 
     //relacion uno a uno 
-    public function requerimientos()
+    public function solicitud()
     {
-        return $this->belongsTo(Requerimiento::class);
+        return $this->belongsTo(Solicitud::class);
     }
 }

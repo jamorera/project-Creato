@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Rol;
 use App\Models\Solicitud;    
 
 class User extends Authenticatable
@@ -26,6 +27,12 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    //relacion muchos a muchos
+    public function rols()
+    {
+        return $this->belongsToMany(Rol::class);
+    }
 
     //relacion muchos a muchos polimorfica
     public function solicitudes()

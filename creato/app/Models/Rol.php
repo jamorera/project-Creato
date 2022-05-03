@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Rol extends Model
 {
     use HasFactory;
+
+    //relacion muchos a muchos
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
