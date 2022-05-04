@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Ficha_tecnica;
+
 class Base_taco extends Model
 {
     use HasFactory,HasApiTokens;
     protected $fillable=[
+        'ficha_tecnica_id',
         'l_taco_base',
         'a_taco_base',
         'e_taco_base',
@@ -34,4 +37,10 @@ class Base_taco extends Model
         'cant_utabla_base_inf',   //cantidad unidad inferior
         'cant_ttabla_base_inf'   //cantidad total inferior
     ];
+
+    //relacion uno a uno
+   public function ficha_tecnica()
+   {
+       return $this->belongsTo(Ficha_tecnica::class);
+   }
 }

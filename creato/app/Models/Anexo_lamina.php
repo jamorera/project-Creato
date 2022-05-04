@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Ficha_tecnica;
+
 class Anexo_lamina extends Model
 {
     use HasFactory,HasApiTokens;
     protected $fillable=[
+        'ficha_tecnica_id',
         'l_liston_costadoA',
         'a_liston_costadoA',
         'e_liston_costadoA',
@@ -58,4 +61,10 @@ class Anexo_lamina extends Model
         'cant_ulamina_tapa',   //cantidad unidad
         'cant_tlamina_tapa',   //cantidad total
     ];
+
+    //relacion uno a uno
+   public function ficha_tecnica()
+   {
+       return $this->belongsTo(Ficha_tecnica::class);
+   }
 }

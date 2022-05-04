@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('anexo_maderas', function (Blueprint $table) {
             $table->id();   
+            $table->unsignedBigInteger('ficha_tecnica_id');
+
             $table->double('l_tabla_costadoA');
             $table->double('a_tabla_costadoA');
             $table->double('e_tabla_costadoA');
@@ -50,7 +52,8 @@ return new class extends Migration
             $table->double('e_stabla_tapa');
             $table->integer('cant_ustabla_tapa');   //cantidad unidad saldo
             $table->integer('cant_tstabla_tapa');   //cantidad total saldo
-            
+
+            $table->foreign('ficha_tecnica_id')->references('id')->on('ficha_tecnicas')->onDelete('cascade');           
             $table->timestamps();
         });
     }

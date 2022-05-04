@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
+
 use App\Models\Solicitud;
+use App\Models\Costo;
+use App\Models\Base_repisa;
+use App\Models\Base_taco;
+use App\Models\Anexo_lamina;
+use App\Models\Anexo_madera;
 
 class Ficha_tecnica extends Model
 {
@@ -37,13 +43,36 @@ class Ficha_tecnica extends Model
         'cant_tliston_tapa'   //cantidad unidad
     ];
 
-    //relaciones
-
-    
+    //relaciones    
 
     //relacion uno a uno 
     public function solicitud()
     {
         return $this->belongsTo(Solicitud::class);
+    }
+    
+    public function costo()
+    {
+        return $this->hasOne(Costo::class);
+    }
+
+    public function base_repisa()
+    {
+        return $this->hasOne(Base_repisa::class);
+    }
+
+    public function base_taco()
+    {
+        return $this->hasOne(Base_taco::class);
+    }
+
+    public function anexo_lamina()
+    {
+        return $this->hasOne(Anexo_lamina::class);
+    }
+
+     public function anexo_madera()
+    {
+        return $this->hasOne(Anexo_madera::class);
     }
 }

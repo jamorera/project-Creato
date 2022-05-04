@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('base_tacos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ficha_tecnica_id');
+
             $table->double('l_taco_base');
             $table->double('a_taco_base');
             $table->double('e_taco_base');
             $table->integer('cant_utaco_base'); //cantidad unidad
             $table->integer('cant_ttaco_base'); //cantidad total
-
+            
             $table->double('l_tabla_base_sup');
             $table->double('a_tabla_base_sup');
             $table->double('e_tabla_base_sup');
@@ -38,6 +40,8 @@ return new class extends Migration
             $table->double('e_tabla_base_inf');
             $table->integer('cant_utabla_base_inf'); //cantidad unidad inferior
             $table->integer('cant_ttabla_base_inf'); //cantidad total inferior
+            
+            $table->foreign('ficha_tecnica_id')->references('id')->on('ficha_tecnicas')->onDelete('cascade');
             $table->timestamps();
         });
     }

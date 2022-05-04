@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('costos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ficha_tecnica_id');
+            
             $table->string('descripcion');
             $table->double('cantidad');
             $table->double('valor_unitario');
             $table->double('valor_total');
             $table->enum('estado',['inicial','novedad','final']);
+
+            $table->foreign('ficha_tecnica_id')->references('id')->on('ficha_tecnicas')->onDelete('cascade');
             $table->timestamps();
         });
     }

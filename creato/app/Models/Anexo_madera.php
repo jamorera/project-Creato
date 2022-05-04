@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Ficha_tecnica;
+
 class Anexo_madera extends Model
 {
     use HasFactory,HasApiTokens;
     protected $fillable=[
+        'ficha_tecnica_id',
+
         'l_tabla_costadoA',
         'a_tabla_costadoA',
         'e_tabla_costadoA',
@@ -46,4 +50,10 @@ class Anexo_madera extends Model
         'cant_ustabla_tapa',   //cantidad unidad saldo
         'cant_tstabla_tapa'   //cantidad total saldo
     ];
+
+     //relacion uno a uno
+    public function ficha_tecnica()
+    {
+        return $this->belongsTo(Ficha_tecnica::class);
+    }
 }
