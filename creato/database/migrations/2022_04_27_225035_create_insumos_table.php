@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('insumos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
-            $table->string('proveedor');
+            $table->string('descripcion',200);
+            $table->string('proveedor',50);
             $table->enum('tipo_unidad',['rollo','lamina','Unidad']); 
-            $table->boolean('medida');
-            $table->integer('cantidad_tipo_unidad');
-            $table->boolean('valor_unitario');
+            $table->integer('cantidad_tipo_unidad')->length(5)->unsigned();
+            $table->double('valor_unitario',18,3);
             $table->timestamps();
         });
     }

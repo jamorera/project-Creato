@@ -21,8 +21,8 @@ class Madera_lamina extends Model
     ];
 
     //relacion muchos a muchos polimorfica
-    public function solicitudes()
+    public function solicituds()
     {
-        return $this->morphToMany(Solicitud::class,'solicitables');
+        return $this->morphToMany(Solicitud::class,'solicitable');
     }
 }

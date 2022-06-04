@@ -25,7 +25,7 @@ class Repository{
         return $data;
     }
     public function create($data){
-        $data = $this->model::create($data);
+        $this->model::create($data);
         $info=[
             'message'=>'Datos registrados correctamente',
             'code'=>200
@@ -33,37 +33,25 @@ class Repository{
         return $info;
     }
     public function show($id){
-        $itemData =$this->model::find($id);
-        $validate = $this->validated->exist($id);
-        $data = Arr::add($validate,'data',$itemData);
-        if($validate['code']==200){
-            $data;
-        }else{
-            $data = Arr::except($data,['data']);
-        }
+        $itemData =$this->model::findOrFail($id);
+        $info = ['code'=>200];
+        $data = Arr::add($info,'data',$itemData);
         return $data;
     }
     public function update($id,$data){
-        $validate = $this->validated->exist($id);
-        if($validate['code']==200){
-            $this->model::find($id)->update($data);
-            $message = 'Datos actualizados correctamente.';
-            $data = Arr::add($validate,'message',$message);
-        }else{
-            $data = $validate;
-        }
-        return  $data;
-
+        $this->model::findOrFail($id)->update($data);
+        $info = [
+            'code'=>200,
+            'message'=>'Datos actualizados correctamente.'
+        ];
+        return  $info;
     }
     public function delete($id){
-        $validate = $this->validated->exist($id);
-        if($validate['code']==200){
-            $this->model::where(["id"=>$id])->first()->delete();
-            $message = 'Registro eliminado correctamente.';
-            $data = Arr::add($validate,'message',$message);
-        }else{
-            $data = $validate;
-        }
-        return $data;
+        $this->model::findOrFail($id)->delete();
+        $info = [
+            'code'=>200,
+            'message'=>'Registro eliminados correctamente.'
+        ];
+        return $info;
     }
 }

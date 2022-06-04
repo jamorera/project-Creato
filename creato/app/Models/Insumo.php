@@ -14,15 +14,14 @@ class Insumo extends Model
     protected $fillable=[
         'descripcion',
         'tipo_unidad',
-        'medida',
         'proveedor',
         'cantidad_tipo_unidad',
         'valor_unitario',
     ];
 
     //relacion muchos a muchos polimorfica
-    public function solicitudes()
+    public function solicituds()
     {
-        return $this->morphToMany(Solicitud::class,'solicitables');
+        return $this->morphToMany(Solicitud::class,'solicitable');
     }
 }

@@ -24,12 +24,12 @@ class ClienteRules extends FormRequest
     public function rules():array
     {
         return [
-            'nombre' => 'required',
-            'nit' => 'required',
-            'direccion' => 'required',
-            'telefono' => 'required',
-            'email' => 'required|email',      
-            'ciudad' => 'required',
+            'nombre' => 'required|string|max:100',  
+            'nit' => 'required|numeric|min:10',
+            'direccion' => 'required|string|max:50',            
+            'telefono' => 'required|numeric|min:10',
+            'correo' => 'required|email|max:40',
+            'ciudad' => 'required|string|max:30' 
         ];
     }
     public function messages()
@@ -39,7 +39,7 @@ class ClienteRules extends FormRequest
             'nit.required' => 'El campo nit es obligatorio.',
             'direccion.required' => 'El campo direccion es obligatorio.',
             'telefono.required' => 'El campo telefono es obligatorio.',
-            'email.required' => 'El campo email es obligatorio.',
+            'correo.required' => 'El campo correo es obligatorio.',
             'ciudad.required' => 'El campo ciudad es obligatorio.',
         ];
     }

@@ -1,25 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api\Insumo;
+namespace App\Http\Controllers\Api\Madera_lamina;
 
-use App\Models\Insumo;
-
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
 use App\Repositories\Repository;
+use App\Http\Requests\Madera_laminaRules;
+use Illuminate\Support\Facades\DB;
 use App\Http\Responsables\Response;
-use App\Http\Requests\InsumoRules;
 use App\Http\Controllers\Controller;
+use App\Models\Madera_lamina;
 
-class InsumoController extends Controller
+class Madera_laminaController extends Controller
 {
     protected $repository;
     protected $response;
 
     public function __construct()
     {
-        $this->repository = new Repository(Insumo::class);  
+        $this->repository = new Repository(Madera_lamina::class);  
         $this->response = new Response();
     }
 
@@ -36,7 +34,7 @@ class InsumoController extends Controller
         return $this->response->json($this->data);
     }
      
-    public function create(InsumoRules $request){
+    public function create(Madera_laminaRules $request){
         DB::beginTransaction();
         try { 
             $this->data = $this->repository->create($request->all());
@@ -63,7 +61,7 @@ class InsumoController extends Controller
         }  
         return $this->response->json($this->data);
     }
-    public function update(InsumoRules $request, $id){
+    public function update(Madera_laminaRules $request, $id){
         DB::beginTransaction();
         try {
             $this->data = $this->repository->update($id,$request->all()); 

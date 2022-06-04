@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('madera_laminas', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');  
-            $table->enum('tipo',['triplex','bloque','repiza','tabla','carton']);
-            $table->boolean('largo');
-            $table->boolean('ancho');
-            $table->boolean('espesor');
-            $table->boolean('valor_unitario');
+            $table->string('descripcion',200);  
+            $table->enum('tipo',['triplex','bloque','liston','repiza','tabla','carton']);
+            $table->double('largo',5,2);
+            $table->double('ancho',5,2);
+            $table->double('espesor',3,2);
+            $table->double('valor_unitario',18,3);
             $table->timestamps();
         });
     }

@@ -9,6 +9,11 @@ class Rol extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'nombre',
+        'estado'
+    ];
+
     //relacion muchos a muchos
     public function users()
     {

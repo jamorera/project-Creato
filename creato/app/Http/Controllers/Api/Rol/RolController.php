@@ -1,25 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api\Insumo;
+namespace App\Http\Controllers\Api\Rol;
 
-use App\Models\Insumo;
-
-use Illuminate\Support\Facades\DB;
+use App\Models\Rol;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RolRules;
 use App\Repositories\Repository;
+use Illuminate\Support\Facades\DB;
 use App\Http\Responsables\Response;
-use App\Http\Requests\InsumoRules;
 use App\Http\Controllers\Controller;
 
-class InsumoController extends Controller
+class RolController extends Controller
 {
     protected $repository;
     protected $response;
 
     public function __construct()
     {
-        $this->repository = new Repository(Insumo::class);  
+        $this->repository = new Repository(Rol::class);  
         $this->response = new Response();
     }
 
@@ -36,7 +34,7 @@ class InsumoController extends Controller
         return $this->response->json($this->data);
     }
      
-    public function create(InsumoRules $request){
+    public function create(RolRules $request){
         DB::beginTransaction();
         try { 
             $this->data = $this->repository->create($request->all());
@@ -63,7 +61,7 @@ class InsumoController extends Controller
         }  
         return $this->response->json($this->data);
     }
-    public function update(InsumoRules $request, $id){
+    public function update(RolRules $request, $id){
         DB::beginTransaction();
         try {
             $this->data = $this->repository->update($id,$request->all()); 

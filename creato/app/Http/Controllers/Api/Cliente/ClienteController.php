@@ -60,18 +60,14 @@ class ClienteController extends Controller
                 "message"=>"No ha sido posible realizar proceso, por favor verifique e intente nuevamente.",
                 "code"=>500
             ];
-        }        
+        }  
         return $this->response->json($this->data);
     }
     public function update(ClienteRules $request, $id){
         DB::beginTransaction();
         try {
             $this->data = $this->repository->update($id,$request->all()); 
-            if($this->data['code']==200){
-                DB::commit();
-            }else{
-                DB::rollback();
-            }     
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
             $this->data =[
@@ -86,11 +82,7 @@ class ClienteController extends Controller
         DB::beginTransaction();
         try {
             $this->data = $this->repository->delete($id);
-            if($this->data['code']==200){
-                DB::commit();
-            }else{
-                DB::rollback();
-            }             
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
             $this->data =[

@@ -2,31 +2,46 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\Rol;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
-        $request->validate([
-            'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|confirmed',
-        ]);
-        $datos = request()->all();
-        if ($request->password) {
+    public function register(Request $request){        
+        DB::beginTransaction();
+        try {
+            $request->validate([
+                'name'=>'required',
+                'address'=>'required',
+                'phone'=>'required',
+                'email'=>'required|email|unique:users',
+                'rol'=>'required',
+                'password'=>'required|confirmed',
+            ]);
+            $datos = request()->all();
+            if ($request->password) {
                 $datos['password']=Hash::make($request['password']);
-                User::create($datos);
+                $data = User::create($datos);
             } 
-        return response()->json([
-            "status" => 1,
-            "msg" =>"¡Registro de usuario exitoso!",
-        ],200);
+            $rol_id = Rol::where('nombre',$request->rol)->first()->id;
+            if ($rol_id){
+                $data->rols()->attach($rol_id);
+            }
+            DB::commit();
+            return response()->json([
+                "status" => 1,
+                "msg" =>"¡Registro de usuario exitoso!",
+            ],200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+            DB::rollback();
+        }
+        
     }
 
     public function login(Request $request){
@@ -63,7 +78,7 @@ class AuthController extends Controller
         return response()->json([
             "status" => 1,
             "msg" =>"Info usuario",
-            "data" => auth()->user()
+            "data" => auth()->user()->load("rols"),
         ]);
     }
 

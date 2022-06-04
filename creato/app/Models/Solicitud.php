@@ -19,7 +19,7 @@ class Solicitud extends Model
         'h_huacal',
         'peso',
         'cantidad',
-        'separacion'
+        'separacion',
     ];
 
     //relaciones

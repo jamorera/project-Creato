@@ -15,9 +15,9 @@ class Cliente extends Model
         'nombre',
         'nit',
         'direccion',
-        'correo',
         'telefono',
-        'email',
+        'extension',
+        'correo',
         'ciudad' 
     ];
     //relaciones

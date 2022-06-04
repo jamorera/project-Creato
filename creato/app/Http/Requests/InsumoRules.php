@@ -24,24 +24,22 @@ class InsumoRules extends FormRequest
     public function rules()
     {
         return [
-            'descripcion' => 'required|string|max:255',
-        'tipo_unidad' => 'required|string|max:255',
-        'medida' => 'required|number|max:255',
-        'proveedor' => 'required|string|max:255',
-        'cantidad_tipo_unidad' => 'required|number|max:255',
-        'valor_unitario'  => 'required|number|max:255',
+            'descripcion' => 'required|string|max:200',
+            'tipo_unidad' => 'required|string',
+            'proveedor' => 'required|string|max:50',
+            'cantidad_tipo_unidad' => 'required|numeric|min:5',
+            'valor_unitario'  => 'required|numeric',
         ];
     }
 
     public function messages()
     {
         return [
-            'descripcion' => 'El campo descripcion es obligatorio.',
-            'tipo_unidad' => 'El campo tipo de unidad es obligatorio.',
-            'medida' => 'El campo medida es obligatorio.',
-            'proveedor' => 'El campo proveedor es obligatorio.',
-            'cantidad_tipo_unidad'  => 'El campo cantidad de tipo de unidad es obligatorio.',
-            'valor_unitario' => 'El campo valor unitario es obligatorio.',
+            'descripcion.required' => 'El campo descripcion es obligatorio.',
+            'tipo_unidad.required' => 'El campo tipo de unidad es obligatorio.',
+            'proveedor.required' => 'El campo proveedor es obligatorio.',
+            'cantidad_tipo_unidad.required' => 'El campo cantidad de tipo de unidad es obligatorio.',
+            'valor_unitario.required' => 'El campo valor unitario es obligatorio.',
         ];
     }
 }
