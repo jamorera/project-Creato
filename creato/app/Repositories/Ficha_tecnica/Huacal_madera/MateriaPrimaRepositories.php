@@ -4,7 +4,7 @@ namespace App\Repositories\Ficha_tecnica\Huacal_madera;
 
 use App\Models\Madera_lamina;
 
-class MaderaRepositories
+class MateriaPrimaRepositories
 {
     protected $selectMadera =["largo","ancho","espesor","valor_unitario"];
 

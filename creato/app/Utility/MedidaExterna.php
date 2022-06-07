@@ -11,7 +11,7 @@ class MedidaExterna
          $this->data = $data;
          $this->infoMadera = $infoMadera;
      }
-    public function calcular(){  
+    public function execute(){  
         return [
             "largo" =>$this->largo(),
             "ancho" =>$this->ancho(),
@@ -20,15 +20,24 @@ class MedidaExterna
     }
 
     function largo(){        
-        return round($this->data['l_huacal'] + 
-        ($this->infoMadera['liston_costados']['espesor']+ $this->infoMadera['tabla_costados']['espesor'])*2, 2);
+        return round(
+            $this->data['l_huacal'] 
+            +($this->infoMadera['liston_costados']['espesor']
+            + $this->infoMadera['tabla_costados']['espesor'])*2, 2);
     }
     function ancho(){        
-        return round($this->data['a_huacal'] + 
-        ($this->infoMadera['liston_costados']['espesor'] + $this->infoMadera['tabla_costados']['espesor'])*2, 2);
+        return round(
+            $this->data['a_huacal'] 
+            +($this->infoMadera['liston_costados']['espesor'] 
+            + $this->infoMadera['tabla_costados']['espesor'])*2, 2);
     }
     function alto(){
-        return round($this->data['h_huacal'] + $this->infoMadera['bloque_base']['ancho'] + $this->infoMadera['tabla_base']['espesor'] + $this->infoMadera['liston_costados']['espesor'] + $this->infoMadera['tabla_costados']['espesor'], 2);
+        return round(
+            $this->data['h_huacal']
+            + $this->infoMadera['bloque_base']['ancho']
+            + $this->infoMadera['tabla_base']['espesor'] 
+            + $this->infoMadera['liston_costados']['espesor'] 
+            + $this->infoMadera['tabla_costados']['espesor'], 2);
     }
 
 }
