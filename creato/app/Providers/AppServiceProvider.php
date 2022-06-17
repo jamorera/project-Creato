@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // $this->app->bind(BaseMaderaInterface::class, BaseService::class);
         // $this->app->bind(BasePestanaInterface::class, BasePestanaService::class);
-        // $this->app->bind(TipoBaseInterface::class, TipoBaseService::class);
+        // $this->app->bind(BaseInterface::class, TipoBaseService::class);
 
         $this->app->bind(DisenoInterfaceBase::class, function ($app) {
             return $app->make(request()->pestana === false ?  MargenAncho::class : MargenCompleto::class);

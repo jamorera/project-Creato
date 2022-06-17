@@ -2,19 +2,19 @@
 
 namespace App\Service\Base;
 
-use App\Interface\TipoBaseInterface;
 use App\Utility\CantidadBloque;
 
-class TipoBaseService implements TipoBaseInterface
+class TipoBaseService
 {
 
     public $cantLargo;
     public $cantAncho;
     public $cantidad;
     public $espesorCostAncho;
-    public function __construct(CantidadBloque $cantidadBloque)
+    
+    public function __construct()
     {
-        $this->cantidadBloque = $cantidadBloque;
+        $this->cantidadBloque = new CantidadBloque();
     }
 
     public function execute($data, $infoMateriaPrima){
@@ -48,7 +48,7 @@ class TipoBaseService implements TipoBaseInterface
                 }
             break;
         }
-            return $this->cantidad;
+        return $this->cantidad;
         
     }
 }

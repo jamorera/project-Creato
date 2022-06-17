@@ -34,6 +34,7 @@ class MedidaExterna
             + $this->infoMadera['tabla_costados']['espesor'])*2, 2);
     }
     function alto(){
+        //fata if para cuando la base es taco
         return round(
             $this->data['h_huacal']
             + $this->infoMadera['bloque_base']['ancho']
