@@ -6,11 +6,13 @@ class MedidaExterna
 {
     private $data;
     private $infoMadera;
+
      public function __construct($data,$infoMadera)
      {
          $this->data = $data;
          $this->infoMadera = $infoMadera;
      }
+
     public function execute(){  
         return [
             "largo" =>$this->largo(),
@@ -19,9 +21,9 @@ class MedidaExterna
         ];
     }
 
-    function largo(){        
+    function largo(){          
         return round(
-            $this->data['l_huacal'] 
+            $this->data['l_huacal']
             +($this->infoMadera['liston_costados']['espesor']
             + $this->infoMadera['tabla_costados']['espesor'])*2, 2);
     }

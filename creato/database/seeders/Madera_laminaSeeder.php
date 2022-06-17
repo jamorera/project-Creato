@@ -64,19 +64,27 @@ class Madera_laminaSeeder extends Seeder
             'valor_unitario' => 400,
         ]);
         Madera_lamina::create([
-            'descripcion' => 'repiza 300-9-3',
-            'tipo' => 'repiza',
+            'descripcion' => 'repisa 300-9-3',
+            'tipo' => 'repisa',
             'largo' => 300,
             'ancho' => 8.5,
             'espesor' => 2.8,
             'valor_unitario' => 400,
         ]);
         Madera_lamina::create([
-            'descripcion' => 'repiza 300-9-4',
-            'tipo' => 'repiza',
+            'descripcion' => 'repisa 300-9-4',
+            'tipo' => 'repisa',
             'largo' => 300,
             'ancho' => 8.5,
             'espesor' => 3.8,
+            'valor_unitario' => 400,
+        ]);
+        Madera_lamina::create([
+            'descripcion' => 'repisa 300-10-6',
+            'tipo' => 'repisa',
+            'largo' => 300,
+            'ancho' => 9.5,
+            'espesor' => 5.8,
             'valor_unitario' => 400,
         ]);
         Madera_lamina::create([
@@ -94,7 +102,7 @@ class Madera_laminaSeeder extends Seeder
             'ancho' => 9.5,
             'espesor' => 9.5,
             'valor_unitario' => 400,
-        ]);
+        ]);       
         Madera_lamina::create([
             'descripcion' => 'liston 250-9-1.6',
             'tipo' => 'liston',
@@ -112,11 +120,19 @@ class Madera_laminaSeeder extends Seeder
             'valor_unitario' => 400,
         ]);
         Madera_lamina::create([
-            'descripcion' => 'repiza 250-9-3',
-            'tipo' => 'repiza',
+            'descripcion' => 'repisa 250-9-3',
+            'tipo' => 'repisa',
             'largo' => 300,
             'ancho' => 8.5,
             'espesor' => 2.8,
+            'valor_unitario' => 400,
+        ]);
+        Madera_lamina::create([
+            'descripcion' => 'repisa 250-10-6',
+            'tipo' => 'repisa',
+            'largo' => 250,
+            'ancho' => 9.5,
+            'espesor' => 5.8,
             'valor_unitario' => 400,
         ]);
         Madera_lamina::create([

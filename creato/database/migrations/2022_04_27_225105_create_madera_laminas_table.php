@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('madera_laminas', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion',200);  
-            $table->enum('tipo',['triplex','bloque','liston','repiza','tabla','carton']);
+            $table->enum('tipo',['triplex','bloque','liston','repisa','tabla','carton']);
             $table->double('largo',5,2);
             $table->double('ancho',5,2);
             $table->double('espesor',3,2);
