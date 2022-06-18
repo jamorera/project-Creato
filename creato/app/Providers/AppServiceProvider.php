@@ -22,17 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->bind(BaseMaderaInterface::class, BaseService::class);
-        // $this->app->bind(BasePestanaInterface::class, BasePestanaService::class);
-        // $this->app->bind(BaseInterface::class, TipoBaseService::class);
-
         $this->app->bind(DisenoInterfaceBase::class, function ($app) {
             return $app->make(request()->pestana === false ?  MargenAncho::class : MargenCompleto::class);
         });
-        // $this->app->bind(TipoBaseInterface::class, function ($app) {
-        //     return $app->make(request()->tipo_de_base ==='taco' ?  Taco::class : BloqueRepisa::class);
-        // });
-        // $this->app->bind(TipoBaseInterface::class, Taco::class);
     }
 
     /**

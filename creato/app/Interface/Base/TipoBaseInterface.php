@@ -5,5 +5,5 @@ namespace App\Interface\Base;
 
 interface TipoBaseInterface 
 {
-    public function execute($data);
+    public function execute($data,$cantidad);
 }
