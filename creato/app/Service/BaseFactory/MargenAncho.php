@@ -3,15 +3,13 @@
 namespace App\Service\BaseFactory;
 
 use App\Factory\TipoBaseFactory;
-use App\Service\Base\TipoBaseService;
-use App\Interface\Base\TipoBaseInterface;
 use App\Interface\Base\DisenoInterfaceBase;
 use App\Repositories\Ficha_tecnica\InfoMateriaPrima\MateriaPrimaRepositories;
 use App\Utility\CantidadBloque;
 
 class MargenAncho implements DisenoInterfaceBase
 {
-    
+
     public function calcular($data){
 
         $infoMateriaPrima = new MateriaPrimaRepositories();

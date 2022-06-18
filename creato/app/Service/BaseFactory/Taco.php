@@ -3,8 +3,6 @@
 namespace App\Service\BaseFactory;
 
 use App\Utility\MedidaExterna;
-use App\Interface\BaseInterface;
-use App\Service\Base\TipoBaseService;
 use App\Interface\Base\TipoBaseInterface;
 use App\Repositories\Ficha_tecnica\InfoMateriaPrima\MateriaPrimaRepositories;
 
@@ -18,8 +16,6 @@ class Taco implements TipoBaseInterface
 
         $medidaExterna = new MedidaExterna($data,$insumoMadera);
         $cantPiezas = floor($data['a_huacal']/$insumoMadera['tabla_base']['ancho']);
-        // $tipoBaseService = new TipoBaseService();
-        // $cantidad = $tipoBaseService->execute($data,$insumoMadera);
         $bloqueBase=[
             'largo' => $medidaExterna->ancho(),
             'ancho' => $insumoMadera['bloque_base']['ancho'],
