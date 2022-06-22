@@ -2,16 +2,10 @@
 
 namespace App\Providers;
 
-use App\Service\Base\BaseService;
-use App\Service\Base\TipoBaseService;
-use App\Interface\BaseMaderaInterface;
 use Illuminate\Support\ServiceProvider;
-use App\Service\Base\BasePestanaService;
 use App\Service\BaseFactory\MargenAncho;
+use App\Interface\Base\DisenoBaseInterface;
 use App\Service\BaseFactory\MargenCompleto;
-use App\Interface\Base\DisenoInterfaceBase;
-use App\Service\BaseFactory\BloqueRepisa;
-use App\Service\BaseFactory\Taco;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(DisenoInterfaceBase::class, function ($app) {
+        $this->app->bind(DisenoBaseInterface::class, function ($app) {
             return $app->make(request()->pestana === false ?  MargenAncho::class : MargenCompleto::class);
         });
     }

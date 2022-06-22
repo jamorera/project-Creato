@@ -4,10 +4,10 @@ namespace App\Service\BaseFactory;
 
 use App\Utility\CantidadBloque;
 use App\Factory\TipoBaseFactory;
-use App\Interface\Base\DisenoInterfaceBase;
+use App\Interface\Base\DisenoBaseInterface;
 use App\Repositories\Ficha_tecnica\InfoMateriaPrima\MateriaPrimaRepositories;
 
-class MargenCompleto implements DisenoInterfaceBase
+class MargenCompleto implements DisenoBaseInterface
 {
     public function calcular($data){
         

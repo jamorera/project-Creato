@@ -1,0 +1,13 @@
+<?php 
+
+namespace App\Service\CostadoAnchoFactory;
+
+use App\Interface\Base\DisenoCostadoInterface;
+
+class AnchoCompleto implements DisenoCostadoInterface
+{  
+    public function calcular()
+    {
+        
+    }
+}

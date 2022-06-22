@@ -3,7 +3,7 @@
 namespace App\Interface\Base;
 
 
-interface DisenoInterfaceBase
+interface DisenoBaseInterface
 {
     public function calcular($data);
 }
