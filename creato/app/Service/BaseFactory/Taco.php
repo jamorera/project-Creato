@@ -17,48 +17,49 @@ class Taco implements TipoBaseInterface
         $insumoMadera = $infoMateriaPrima->executes($data);
 
         $medidaExterna = new MedidaExterna($data,$insumoMadera);
-        $cantPiezas = floor($data['a_huacal']/$insumoMadera['tabla_base']['ancho']);
+        $cantPiezas = floor($data['a_huacal']/$insumoMadera['tablaBase']['ancho']);
         if($data['pestana']==false){
-            $this->largoTable = $data['l_huacal']+($insumoMadera['tabla_costados']['espesor']*2);
+            $this->largoTabla = $data['l_huacal']+($insumoMadera['tablaCostados']['espesor']*2);
         }else{
-            $this->largoTable = $data['l_huacal'];
+            $this->largoTabla = $data['l_huacal'];
         }
         $bloqueBase=[
-            'largo' => $medidaExterna->ancho(),
-            'ancho' => $insumoMadera['bloque_base']['ancho'],
-            'espesor' =>$insumoMadera['bloque_base']['espesor'],
+            'largo' => 8.5,
+            'ancho' => $insumoMadera['bloqueBase']['ancho'],
+            'espesor' =>$insumoMadera['bloqueBase']['espesor'],
             'cantidad' => $cantidad['total'],
-            'cantidadTotal' => floor($cantidad['total']*$data['cantidad']),
+            'cantidadTotal' => $cantidad['total']*$data['cantidad'],
         ];
         $tablaBase=[
-            'largo' => $this->largoTable,
-            'ancho' => $insumoMadera['tabla_base']['ancho'],
-            'espesor' =>$insumoMadera['tabla_base']['espesor'],
+            'largo' => $this->largoTabla,
+            'ancho' => $insumoMadera['tablaBase']['ancho'],
+            'espesor' =>$insumoMadera['tablaBase']['espesor'],
             'cantidad' => $cantPiezas,
             'cantidadTotal' => $cantPiezas*$data['cantidad'],
         ];
         $tablaBaseSaldo =[
-            'largo' => $this->largoTable,
-            'ancho' => round(fmod($data['a_huacal'],$insumoMadera['tabla_base']['ancho']),2),
-            'espesor' =>$insumoMadera['tabla_base']['espesor'],
+            'largo' => $this->largoTabla,
+            'ancho' => round(fmod($data['a_huacal'],$insumoMadera['tablaBase']['ancho']),2),
+            'espesor' =>$insumoMadera['tablaBase']['espesor'],
             'cantidad' => 1,
             'cantidadTotal' => 1*$data['cantidad'],
         ];  
         //con taco
         $tablaTaco=[
-            'largo' => $data['a_huacal'],
-            'ancho' => $insumoMadera['bloque_base']['ancho'],
-            'espesor' =>$insumoMadera['bloque_base']['espesor'],
+            'largo' => $medidaExterna->ancho(),
+            'ancho' => $insumoMadera['listonBase']['ancho'],
+            'espesor' =>$insumoMadera['listonBase']['espesor'],
             'cantidad' => $cantidad['largo'],
             'cantidadTotal' => floor($cantidad['largo']*$data['cantidad']),
         ];
         $tablaInferior=[
-            'largo' => $medidaExterna->largo(),
-            'ancho' => $insumoMadera['bloque_base']['ancho'],
-            'espesor' =>$insumoMadera['bloque_base']['espesor'],
+            'largo' => $this->largoTabla,
+            'ancho' => $insumoMadera['listonBase']['ancho'],
+            'espesor' =>$insumoMadera['listonBase']['espesor'],
             'cantidad' => $cantidad['ancho'],
             'cantidadTotal' => floor($cantidad['ancho']*$data['cantidad']),
         ];
+
         $base = [
             'bloqueBase' => $bloqueBase,
             'tablaBase' => $tablaBase,
@@ -66,7 +67,7 @@ class Taco implements TipoBaseInterface
             'tablaTaco' => $tablaTaco,
             'tablaInferior' => $tablaInferior
         ];
-        var_dump($base['tablaBaseSaldo']['ancho']);
+        
         if($base['tablaBaseSaldo']['ancho'] == 0){
             $base = Arr::except($base, ['tablaBaseSaldo']);            
         }

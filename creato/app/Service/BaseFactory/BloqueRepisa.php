@@ -17,31 +17,31 @@ class BloqueRepisa implements TipoBaseInterface
         $insumoMadera = $infoMateriaPrima->executes($data);
 
         $medidaExterna = new MedidaExterna($data,$insumoMadera);
-        $cantPiezas = floor($data['a_huacal']/$insumoMadera['tabla_base']['ancho']);
+        $cantPiezas = floor($data['a_huacal']/$insumoMadera['tablaBase']['ancho']);
         if($data['pestana']==false){
-            $this->largoTable = $data['l_huacal']+($insumoMadera['tabla_costados']['espesor']*2);
+            $this->largoTable = $data['l_huacal']+($insumoMadera['tablaCostados']['espesor']*2);
         }else{
             $this->largoTable = $data['l_huacal'];
         }
 
         $bloqueBase=[
             'largo' => $medidaExterna->ancho(),
-            'ancho' => $insumoMadera['bloque_base']['ancho'],
-            'espesor' =>$insumoMadera['bloque_base']['espesor'],
+            'ancho' => $insumoMadera['bloqueBase']['ancho'],
+            'espesor' =>$insumoMadera['bloqueBase']['espesor'],
             'cantidad' => $cantidad,
-            'cantidadTotal' => floor($cantidad*$data['cantidad']),
+            'cantidadTotal' => $cantidad*$data['cantidad'],
         ];
         $tablaBase=[
             'largo' => $this->largoTable,
-            'ancho' => $insumoMadera['tabla_base']['ancho'],
-            'espesor' =>$insumoMadera['tabla_base']['espesor'],
+            'ancho' => $insumoMadera['tablaBase']['ancho'],
+            'espesor' =>$insumoMadera['tablaBase']['espesor'],
             'cantidad' => $cantPiezas,
             'cantidadTotal' => $cantPiezas*$data['cantidad'],
         ];
         $tablaBaseSaldo =[
             'largo' => $this->largoTable,
-            'ancho' => round(fmod($data['a_huacal'],$insumoMadera['tabla_base']['ancho']),2),
-            'espesor' =>$insumoMadera['tabla_base']['espesor'],
+            'ancho' => round(fmod($data['a_huacal'],$insumoMadera['tablaBase']['ancho']),2),
+            'espesor' =>$insumoMadera['tablaBase']['espesor'],
             'cantidad' => 1,
             'cantidadTotal' => 1*$data['cantidad'],
         ];  

@@ -14,22 +14,27 @@ class CubicarRules extends FormRequest
     public function rules()
     {        
         $rules = [
-            'tipo_de_huacal' => 'required',
+            'tipoHuacal' => 'required',
             'l_huacal' => 'required|numeric',
             'a_huacal' => 'required|numeric',
             'h_huacal'  => 'required|numeric',
             'peso' => 'required|numeric',
             'cantidad'  => 'required|numeric',
-            'bloque_base' => 'required|numeric',
-            'tabla_base' =>'required|numeric',
-            'liston_costados' => 'required|numeric',
-            'tabla_costados' =>'required|numeric',
-            'puntilla_base' =>'required|numeric',
-            'puntilla_costados' =>'required|numeric'
+            'bloqueBase' => 'required|numeric',
+            'tablaBase' =>'required|numeric',
+            'listonCostados' => 'required|numeric',
+            'tablaCostados' =>'required|numeric',
+            'puntillaBase' =>'required|numeric',
+            'puntillaCostados' =>'required|numeric'
         ];
-        if($this->tipo_de_huacal == 'jaula'){
+        if($this->tipoHuacal == 'jaula'){
             $rules = array_merge($rules, [                
                 'separacion' => 'required|numeric'
+            ]);
+        }
+        if($this->tipoBase == 'taco'){
+            $rules = array_merge($rules, [                
+                'listonBase' => 'required|numeric'
             ]);
         }
         return $rules;            

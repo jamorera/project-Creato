@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();   
             $table->unsignedBigInteger('solicitud_id')->unique();    
             
-            $table->enum('tipo_de_base',['bloque','taco','repisa']);  
+            $table->enum('tipoBase',['bloque','taco','repisa']);  
             $table->boolean('pestana');  
             $table->double('l_externo');
             $table->double('a_externo');

@@ -12,7 +12,6 @@ class CantidadBloque
     public function calcular($medida,$espesor){
         $this->cantBloque=2;
         $this->cantEspacios = 1;
-        var_dump($medida);
         do{
             $this->cantBloque++;
             $this->cantEspacios++;

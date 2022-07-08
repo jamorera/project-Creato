@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cliente_id');
             
-            $table->enum('tipo_de_huacal',['triplex','madera','carton','jaula']);
+            $table->enum('tipoHuacal',['triplex','madera','carton','jaula']);
             $table->double('l_huacal'); 
             $table->double('a_huacal');
             $table->double('h_huacal');

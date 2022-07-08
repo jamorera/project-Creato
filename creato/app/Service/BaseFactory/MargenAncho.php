@@ -14,16 +14,16 @@ class MargenAncho implements DisenoBaseInterface
 
         $infoMateriaPrima = new MateriaPrimaRepositories();
         $insumoMadera = $infoMateriaPrima->executes($data);
-
+        // var_dump($insumoMadera);
         $cantidadBloque = new CantidadBloque();
-        switch ($data['tipo_de_base']) {
+        switch ($data['tipoBase']) {
             case 'repisa':
             case 'bloque':
-                $cantidad = $cantidadBloque->calcular($data['l_huacal'],$insumoMadera['bloque_base']['espesor']);
+                $cantidad = $cantidadBloque->calcular($data['l_huacal'],$insumoMadera['bloqueBase']['espesor']);
                 break;
             case 'taco':
-                $largo = $cantidadBloque->calcular($data['l_huacal'],$insumoMadera['bloque_base']['espesor']);
-                $ancho = $cantidadBloque->calcular($data['a_huacal'],$insumoMadera['bloque_base']['espesor']);
+                $largo = $cantidadBloque->calcular($data['l_huacal'],$insumoMadera['bloqueBase']['espesor']);
+                $ancho = $cantidadBloque->calcular($data['a_huacal'],$insumoMadera['bloqueBase']['espesor']);
                 $total = $largo * $ancho;
                 $cantidad = [
                     'largo' => $largo,

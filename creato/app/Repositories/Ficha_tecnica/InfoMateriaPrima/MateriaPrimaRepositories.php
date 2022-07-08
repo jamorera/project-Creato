@@ -9,17 +9,37 @@ class MateriaPrimaRepositories
     protected $selectMadera =["largo","ancho","espesor","valor_unitario"];
 
     public function executes($data){
-        $bloque_base = Madera_lamina::findOrFail($data['bloque_base'],$this->selectMadera);
-        $tabla_base = Madera_lamina::findOrFail($data['tabla_base'],$this->selectMadera);
-        $liston_costados = Madera_lamina::findOrFail($data['liston_costados'],$this->selectMadera);
-        $tabla_costados = Madera_lamina::findOrFail($data['tabla_costados'],$this->selectMadera);
-
-        return  [
-            'bloque_base' => $bloque_base,
-            'tabla_base' => $tabla_base,
-            'liston_costados' => $liston_costados,
-            'tabla_costados' => $tabla_costados,
-        ];
+        $bloqueBase= Madera_lamina::findOrFail($data['bloqueBase'],$this->selectMadera);
+        $tablaBase= Madera_lamina::findOrFail($data['tablaBase'],$this->selectMadera);
+        $listonCostados = Madera_lamina::findOrFail($data['listonCostados'],$this->selectMadera);
+        $tablaCostados = Madera_lamina::findOrFail($data['tablaCostados'],$this->selectMadera);
+        
+        
+        switch ($data['tipoBase']) {
+            case 'repisa':
+                $info = [
+                    'bloqueBase' => $bloqueBase,
+                    'tablaBase' => $tablaBase,
+                    'listonCostados' => $listonCostados,
+                    'tablaCostados' => $tablaCostados,
+                ];
+                break;
+            case 'taco':
+                $listonBase= Madera_lamina::findOrFail($data['listonBase'],$this->selectMadera);
+                $info = [
+                    'bloqueBase' => $bloqueBase,
+                    'tablaBase' => $tablaBase,
+                    'listonBase' => $listonBase,
+                    'listonCostados' => $listonCostados,
+                    'tablaCostados' => $tablaCostados,
+                ];
+                break;
+            default:
+                $info = 'no se encontro informacion';
+                break;
+        }
+        
+        return  $info;
     }
 
 }

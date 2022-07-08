@@ -14,17 +14,17 @@ class MargenCompleto implements DisenoBaseInterface
         $infoMateriaPrima = new MateriaPrimaRepositories();
         $insumoMadera = $infoMateriaPrima->executes($data);
         
-        $espesorCostAncho = ($insumoMadera['tabla_costados']['espesor'] + $insumoMadera['liston_costados']['espesor'])*2;
+        $espesorCostAncho = ($insumoMadera['tablaCostados']['espesor'] + $insumoMadera['listonCostados']['espesor'])*2;
 
         $cantidadBloque = new CantidadBloque();
-        switch ($data['tipo_de_base']) {
+        switch ($data['tipoBase']) {
             case 'repisa':
             case 'bloque':
-                $cantidad = $cantidadBloque->calcular($data['l_huacal']+$espesorCostAncho,$insumoMadera['bloque_base']['espesor']);
+                $cantidad = $cantidadBloque->calcular($data['l_huacal']+$espesorCostAncho,$insumoMadera['bloqueBase']['espesor']);
                 break;
             case 'taco':    
-                $largo = $cantidadBloque->calcular($data['l_huacal']+$espesorCostAncho,$insumoMadera['bloque_base']['espesor']);
-                $ancho = $cantidadBloque->calcular($data['a_huacal'],$insumoMadera['bloque_base']['espesor']);
+                $largo = $cantidadBloque->calcular($data['l_huacal']+$espesorCostAncho,$insumoMadera['bloqueBase']['espesor']);
+                $ancho = $cantidadBloque->calcular($data['a_huacal'],$insumoMadera['bloqueBase']['espesor']);
                 $total = $largo * $ancho;
                 $cantidad = [
                     'largo' => $largo,

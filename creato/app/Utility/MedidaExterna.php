@@ -24,23 +24,36 @@ class MedidaExterna
     function largo(){          
         return round(
             $this->data['l_huacal']
-            +($this->infoMadera['liston_costados']['espesor']
-            + $this->infoMadera['tabla_costados']['espesor'])*2, 2);
+            +($this->infoMadera['listonCostados']['espesor']
+            + $this->infoMadera['tablaCostados']['espesor'])*2, 2);
     }
     function ancho(){        
         return round(
             $this->data['a_huacal'] 
-            +($this->infoMadera['liston_costados']['espesor'] 
-            + $this->infoMadera['tabla_costados']['espesor'])*2, 2);
+            +($this->infoMadera['listonCostados']['espesor'] 
+            + $this->infoMadera['tablaCostados']['espesor'])*2, 2);
     }
     function alto(){
         //fata if para cuando la base es taco
-        return round(
-            $this->data['h_huacal']
-            + $this->infoMadera['bloque_base']['ancho']
-            + $this->infoMadera['tabla_base']['espesor'] 
-            + $this->infoMadera['liston_costados']['espesor'] 
-            + $this->infoMadera['tabla_costados']['espesor'], 2);
+        if($this->data['tipoBase'] == 'taco'){
+            $alto = round(
+                $this->data['h_huacal']
+                + $this->infoMadera['bloqueBase']['ancho']
+                + $this->infoMadera['tablaBase']['espesor'] 
+                + $this->infoMadera['listonCostados']['espesor'] 
+                + $this->infoMadera['tablaCostados']['espesor']
+                + ($this->infoMadera['listonBase']['espesor']*2),
+            2); 
+        }else{
+            $alto = round(
+                $this->data['h_huacal']
+                + $this->infoMadera['bloqueBase']['ancho']
+                + $this->infoMadera['tablaBase']['espesor'] 
+                + $this->infoMadera['listonCostados']['espesor'] 
+                + $this->infoMadera['tablaCostados']['espesor'], 
+                2);
+        }
+        return $alto;
     }
 
 }

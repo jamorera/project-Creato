@@ -9,7 +9,7 @@ class TipoBaseFactory
 {
     public function initialize($data)
     {
-        switch ($data['tipo_de_base']) {
+        switch ($data['tipoBase']) {
             case'repisa':
             case 'bloque':
                 return new BloqueRepisa();
